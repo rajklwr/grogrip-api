@@ -14,10 +14,13 @@ exports.leadsData = async (req, res, next) => {
         lead
             .save()
             .then((result) => {
-                res.status(200).json({
-                    message: "Lead generated successfully",
-                    success: true
-                });
+                if (result){
+                    console.log("Result :", result)
+                    res.status(200).json({
+                        message: "Lead generated successfully",
+                        success: true
+                    });
+                }
             })
             .catch((err) => {
                 console.error("Error in creating Lead", err);
