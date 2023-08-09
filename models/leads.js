@@ -14,7 +14,8 @@ const LeadSchema = new Schema({
     },
     phone: {
         type: String,
-        required: true,
+        required: false,
+        default: ""
     },
     createdOn: {
         type: Date,
