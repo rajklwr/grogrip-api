@@ -8,7 +8,7 @@ exports.createOrder = async(req, res, next) => {
 
         try {
             const paymentIntent = await stripe.paymentIntents.create({
-                currency: 'INR',
+                currency: 'USD',
                 metadata: { integration_check: 'accept_a_payment' },
                 amount : amount
             });
