@@ -2,13 +2,14 @@ const Lead = require('../models/leads');
 const mongoose = require("mongoose");
 
 exports.leadsData = async (req, res, next) => {
-    const { name, email, phone } = req.body
+    const { name, email, phone, countryCode } = req.body
     try {
         const lead = new Lead({
             _id: new mongoose.Types.ObjectId(),
             email: email,
             name: name,
-            phone: phone
+            phone: phone,
+            countryCode : countryCode
         });
 
         lead

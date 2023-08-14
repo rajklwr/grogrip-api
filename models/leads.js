@@ -16,6 +16,10 @@ const LeadSchema = new Schema({
         type: String,
         default: ""
     },
+    countryCode: {
+        type: String,
+        default: ""
+    },
     createdOn: {
         type: Date,
         required: true,
