@@ -154,17 +154,20 @@ exports.verifyOtp = async (req, res, next) => {
 };
 
 exports.signIn = async (req, res, next) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const number = req.body.number;
-    const type = req.body.type;
-    const isAdmin = req.body.isAdmin;
-    const fbId = req.body.fbId;
-    const googleId = req.body.googleId;
+    const {name, email, number, type, isAdmin, fbId, googleId  } = req.body
+    // const name = req.body.name;
+    // const email = req.body.email;
+    // const number = req.body.number;
+    // const type = req.body.type;
+    // const isAdmin = req.body.isAdmin;
+    // const fbId = req.body.fbId;
+    // const googleId = req.body.googleId;
 
     // var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
     // console.log(token);
     // return;
+
+    console.log("body :", req.body);
 
     try {
         async function verify() {
@@ -183,7 +186,6 @@ exports.signIn = async (req, res, next) => {
                         success: true,
                     });
                 } else {
-                    // console.log("does not exist");
                     const user = new User();
                     user.name = name;
                     user.email = email;
@@ -193,6 +195,7 @@ exports.signIn = async (req, res, next) => {
                     user.fbId = fbId;
                     user.googleId = googleId;
                     user.save();
+                    console.log("user added successfully")
                     res.status(200).json({
                         message: "user added successfully",
                         success: true,
