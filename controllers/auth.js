@@ -20,6 +20,7 @@ const { OAuth2Client } = require("google-auth-library");
 const accountSid = "ACa8151b1bf11f84aea893b2f4a82e278c"; // Your Account SID from www.twilio.com/console  Test
 const authToken = "0556640b2cbcddba3b7eff4073dc5865"; // Your Auth Token from www.twilio.com/console  Test
 
+
 async function getEmailFromGoogleCredentials(clientId, credentials) {
     const client = new OAuth2Client(clientId);
     const ticket = await client.verifyIdToken({
@@ -170,6 +171,7 @@ exports.signIn = async (req, res, next) => {
     console.log("body :", req.body);
 
     try {
+        const client = new OAuth2Client(process.env.google_ClientId);
         async function verify() {
             const ticket = await client.verifyIdToken({
                 idToken: googleId,
