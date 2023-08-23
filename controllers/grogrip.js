@@ -1,5 +1,5 @@
-// const Lead = require('../models/leads');
 const Cart = require('../models/cart');
+const Order = require('../models/order');
 const mongoose = require("mongoose");
 
 exports.getUserDetail = async (req, res, next) => {
@@ -99,14 +99,37 @@ exports.removeFromCart = async (req, res, next) => {
 
 
 exports.createOrder = async (req, res, next) => {
-
-    try {
-
-    } catch (error) {
-        console.error(error);
-        res.status(400).json({ error: error });
-    }
+        const email = req.user;
+        const { cart, orderValue, paymentDetails} = req.body;
+    
+        try {
+            // Ensure all required fields are provided
+            if (!cart || !orderValue || !email) {
+                return res.status(400).json({ message: "Required fields missing" });
+            }
+    
+            // Create a new order
+            const newOrder = new Order({
+                cart,
+                orderValue,
+                paymentDetails,
+                email
+            });
+    
+            // Save the new order to the database
+            const savedOrder = await newOrder.save();
+    
+            // Send a successful response with the saved order
+            res.status(201).json({ message: "Order created successfully", order: savedOrder });
+    
+        } catch (error) {
+            console.error(error);
+            res.status(400).json({ error: error.message });
+        }
+    
 };
+
+
 exports.gerOrders = async (req, res, next) => {
 
     try {
