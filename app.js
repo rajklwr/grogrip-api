@@ -19,6 +19,7 @@ const commentRoute = require('./routes/comment');
 const paymentRoute = require('./routes/payment');
 
 const leadRoute = require('./routes/leads');
+const grogripRoute = require('./routes/grogrip')
 
 const corsOpts = {
     origin: '*',
@@ -55,6 +56,7 @@ app.use('/auth', authRoutes);
 app.use('/comment', commentRoute);
 app.use('/payment', paymentRoute);
 app.use(leadRoute);
+app.use('/grogrip', grogripRoute)
 
 var meetingDate = null
 

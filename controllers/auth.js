@@ -156,19 +156,7 @@ exports.verifyOtp = async (req, res, next) => {
 
 exports.signIn = async (req, res, next) => {
     const {name, email, number, type, isAdmin, fbId, googleId  } = req.body
-    // const name = req.body.name;
-    // const email = req.body.email;
-    // const number = req.body.number;
-    // const type = req.body.type;
-    // const isAdmin = req.body.isAdmin;
-    // const fbId = req.body.fbId;
-    // const googleId = req.body.googleId;
-
-    // var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-    // console.log(token);
-    // return;
-
-    console.log("body :", req.body);
+    // console.log("body :", req.body);
 
     try {
         const client = new OAuth2Client(process.env.google_ClientId);
