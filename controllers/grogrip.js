@@ -76,6 +76,28 @@ exports.AddToCart = async (req, res, next) => {
 };
 
 
+exports.removeFromCart = async (req, res, next) => {
+    const email = req.user;
+    const { id } = req.body; // Assuming you're sending the id in the request body to determine which item to remove
+
+    try {
+        // Find and remove the item based on the email and id
+        const removedItem = await Cart.findOneAndDelete({ email: email, id: id });
+
+        if(removedItem) {
+            res.status(200).json({ message: 'Item removed from cart successfully', data: removedItem });
+        } else {
+            res.status(404).json({ message: 'Item not found in the cart' });
+        }
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ error: error.message });
+    }
+};
+
+
+
 exports.createOrder = async (req, res, next) => {
 
     try {
