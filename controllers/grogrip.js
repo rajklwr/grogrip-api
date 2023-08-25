@@ -37,6 +37,7 @@ exports.AddToCart = async (req, res, next) => {
     const {
         Product,
         quantity,
+        price,
         id,
         voice,
         topic,
@@ -54,6 +55,7 @@ exports.AddToCart = async (req, res, next) => {
         const updateData = {
             Product,
             quantity,
+            price,
             voice,
             topic,
             referral,

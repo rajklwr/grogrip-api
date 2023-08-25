@@ -11,6 +11,11 @@ const cartSchema = new Schema({
         type: Number,
         required: true,
     },
+    price: {
+        type: Number,
+        required: false,
+        default: 55
+    },
     id: {
         type: Number,
         required: true,
@@ -40,10 +45,11 @@ const cartSchema = new Schema({
         required: false,
         default: ""
     },
-    email : {
+    email: {
         type: String,
-        required: true, 
-    }
-}); 
+        required: true,
+    },
+
+});
 
 module.exports = mongoose.model('Cart', cartSchema);
