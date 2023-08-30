@@ -1,5 +1,6 @@
 const Cart = require('../models/cart');
 const Order = require('../models/order');
+const ContactForm = require('../models/contact-form')
 const mongoose = require("mongoose");
 
 exports.getUserDetail = async (req, res, next) => {
@@ -16,8 +17,6 @@ exports.getCart = async (req, res, next) => {
         const email = req.user;
     
         try {
-            console.log("email:", email);
-
             const items = await Cart.find({ email: email });
     
             if(items.length > 0) {
@@ -143,12 +142,24 @@ exports.gerOrders = async (req, res, next) => {
 };
 
 exports.SubmitContactForm = async (req, res, next) => {
-
+    const registeredEmail = req.user;
     try {
+        const {name, email, phone, comment} = req.body
+
+        const newContact = new ContactForm({
+            name,
+            email,
+            phone,
+            comment,
+            registeredEmail,
+        });
+
+        await newContact.save();
+        res.status(201).json({ message: 'Contact form successfully submitted' });
 
     } catch (error) {
         console.error(error);
-        res.status(400).json({ error: error });
+        res.status(400).json({ error: error.message });
     }
 };
 

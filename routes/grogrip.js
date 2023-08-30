@@ -15,7 +15,7 @@ router.post('/addToCart', auth, grogripController.AddToCart)
 router.post('/removeFromCart', auth, grogripController.removeFromCart)
 router.post('/createOrder', grogripController.createOrder)
 router.post('/getOrders', grogripController.gerOrders)
-router.post('/submit-contact-form', grogripController.SubmitContactForm)
+router.post('/submit-contact-form', auth, grogripController.SubmitContactForm)
 
 
 
