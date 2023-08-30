@@ -7,6 +7,18 @@ exports.createOrder = async(req, res, next) => {
         const amount  = req.body.amount;
 
         try {
+
+            const customer = await stripe.customers.create({
+                name: 'Jenny Rosen',
+                address: {
+                  line1: '510 Townsend St',
+                  postal_code: '98140',
+                  city: 'San Francisco',
+                  state: 'CA',
+                  country: 'US',
+                },
+              });
+
             const paymentIntent = await stripe.paymentIntents.create({
                 currency: 'USD',
                 metadata: { integration_check: 'accept_a_payment' },
