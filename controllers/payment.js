@@ -9,13 +9,13 @@ exports.createOrder = async(req, res, next) => {
         try {
 
             const customer = await stripe.customers.create({
-                name: 'Jenny Rosen',
+                name: 'Rajkiran Kalowar',
                 address: {
-                  line1: '510 Townsend St',
-                  postal_code: '98140',
-                  city: 'San Francisco',
-                  state: 'CA',
-                  country: 'US',
+                  line1: 'Gurgaon, Haryana',
+                  postal_code: '122022',
+                  city: 'Gurgaon',
+                  state: 'Haryana',
+                  country: 'IN',
                 },
               });
 
@@ -25,13 +25,13 @@ exports.createOrder = async(req, res, next) => {
                 amount : amount,
                 description: 'YouTube Automation Services',
                 shipping: {
-                    name: 'Jenny Rosen',
+                    name: 'Rajkiran Kalowar',
                     address: {
-                      line1: '510 Townsend St',
-                      postal_code: '98140',
-                      city: 'San Francisco',
-                      state: 'CA',
-                      country: 'US',
+                        line1: 'Gurgaon, Haryana',
+                        postal_code: '122022',
+                        city: 'Gurgaon',
+                        state: 'Haryana',
+                        country: 'IN',
                     },
                   },
             });
