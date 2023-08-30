@@ -10,7 +10,8 @@ exports.createOrder = async(req, res, next) => {
             const paymentIntent = await stripe.paymentIntents.create({
                 currency: 'USD',
                 metadata: { integration_check: 'accept_a_payment' },
-                amount : amount
+                amount : amount,
+                description: 'YouTube Automation Services',
             });
             res.status(200).json({
                 clientSecret: paymentIntent.client_secret
