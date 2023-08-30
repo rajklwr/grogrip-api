@@ -12,6 +12,16 @@ exports.createOrder = async(req, res, next) => {
                 metadata: { integration_check: 'accept_a_payment' },
                 amount : amount,
                 description: 'YouTube Automation Services',
+                shipping: {
+                    name: 'Jenny Rosen',
+                    address: {
+                      line1: '510 Townsend St',
+                      postal_code: '98140',
+                      city: 'San Francisco',
+                      state: 'CA',
+                      country: 'US',
+                    },
+                  },
             });
             res.status(200).json({
                 clientSecret: paymentIntent.client_secret
