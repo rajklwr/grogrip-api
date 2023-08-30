@@ -104,23 +104,16 @@ exports.createOrder = async (req, res, next) => {
         const { cart, orderValue, paymentDetails} = req.body;
     
         try {
-            // Ensure all required fields are provided
             if (!cart || !orderValue || !email) {
                 return res.status(400).json({ message: "Required fields missing" });
             }
-    
-            // Create a new order
             const newOrder = new Order({
                 cart,
                 orderValue,
                 paymentDetails,
                 email
             });
-    
-            // Save the new order to the database
             const savedOrder = await newOrder.save();
-    
-            // Send a successful response with the saved order
             res.status(201).json({ message: "Order created successfully", order: savedOrder });
     
         } catch (error) {
